@@ -6,7 +6,7 @@ int main()
 {
     int n, m, k;
     cin >> n >> m >> k;
-    if (n > m|| m > k)
+    if (n > m|| n > k)
         cout << "NO" << "\n";
     else
         cout << "YES" << endl;
