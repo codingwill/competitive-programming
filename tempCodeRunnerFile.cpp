@@ -1,2 +1,2 @@
-ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
+aSorting[i].second += aSorting[j].second;
+                    aSorting[j].second = 0;
