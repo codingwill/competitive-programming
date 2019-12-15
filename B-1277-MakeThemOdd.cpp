@@ -1,7 +1,6 @@
 #include <bits/stdc++.h>
 //number theory
 using namespace std;
-bool bisaDibagi[200005];
 
 bool besarDulu(const pair<int, int> &a, const pair<int, int> &b)
 {
@@ -39,49 +38,13 @@ int main()
         }
         sort(aSorting.begin(), aSorting.end(), besarDulu);
         long long int count = 0;
-        /*
         for (int i = 0; i < aSorting.size(); i++)
         {
-            cout << aSorting[i].first << " " << aSorting[i].second << '\n';
-        }
-        */
-        /*
-        for (int i = 0; i < aSorting.size(); i++)
-        {
-            if (aSorting[i].second == 0) continue;
-            if (aSorting[i].first % 2 == 1) continue;
-            for (int j = i+1; j < aSorting.size(); j++)
-            {
-                if (ceil((log2((double)aSorting[i].first / aSorting[j].first))) == floor((log2((double)aSorting[i].first / aSorting[j].first))))
-                //if (((double)aSorting[i].first / aSorting[j].first) & (((double)aSorting[i].first / aSorting[j].first)-1) == 0)
-                {
-                    cout << aSorting[i].first << " " << aSorting[j].first << '\n';
-                    aSorting[i].second += aSorting[j].second;
-                    aSorting[j].second = 0;
-                }
-            }
-            
-        }
-        */
-        for (int i = 0; i < aSorting.size(); i++)
-        {
-            //if (aSorting[i].second == 0) continue;
             if (aSorting[i].first % 2 == 1) continue;
             while (aSorting[i].first % 2 == 0)
             {
-                //count++;
                 aSorting[i].first /= 2;
                 aSorting[i].second++;
-                /*
-                for (int j = i+1; j < aSorting.size(); j++)
-                {
-                    if (aSorting[i].first == aSorting[j].first)
-                    {
-                        aSorting[i].second += aSorting[j].second;
-                        aSorting[j].second = 0;
-                    }
-                }
-                */
             }
         }
         sort(aSorting.begin(), aSorting.end(), besarDulu);
@@ -92,14 +55,7 @@ int main()
             {
                 count += aSorting[i+1].second;
             }
-            //cout << aSorting[i].first << " " << aSorting[i].second << endl;
         }
-        /*
-        for (int i = 0; i < aSorting.size(); i++)
-        {
-            cout << aSorting[i].first << " " << aSorting[i].second << '\n';
-        }
-        */
         cout << count << '\n';
     }
     return 0;
