@@ -1,5 +1,6 @@
 {
     "files.associations": {
+<<<<<<< HEAD
         "algorithm": "cpp",
         "array": "cpp",
         "atomic": "cpp",
@@ -89,5 +90,13 @@
         "xtr1common": "cpp",
         "xtree": "cpp",
         "xutility": "cpp"
+=======
+        "chrono": "cpp",
+        "complex": "cpp",
+        "ostream": "cpp",
+        "iostream": "cpp",
+        "cmath": "cpp",
+        "*.tcc": "cpp"
+>>>>>>> baed759a9b9160f81518bed746a0434e961ae33e
     }
 }
