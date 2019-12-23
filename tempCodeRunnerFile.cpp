@@ -1,1 +1,1 @@
-ZZB CAAA
+turn = (turn + 1) % 4;

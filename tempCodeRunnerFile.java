@@ -1,3 +1,1 @@
-package TugasAlgoritma;
-
-import java.util.*;
+char arr[] = new char[5];
