@@ -91,9 +91,9 @@ public class kriptografi_spiral
         {
             for (int j = 0; j*j < plain.length(); j++)
             {
-                //System.out.print(spiral[i][j] + " ");
+                System.out.print(spiral[i][j] + " ");
             }
-            //System.out.println();
+            System.out.println();
         }
     }
 
@@ -162,13 +162,13 @@ public class kriptografi_spiral
         
         System.out.print("Hasil decrypt: ");
         System.out.println(plain);
-        for (int i = 0; i*i < plain.length(); i++)
+        for (int i = 0; i*i < spiral.length; i++)
         {
-            for (int j = 0; j*j < plain.length(); j++)
+            for (int j = 0; j*j < spiral.length; j++)
             {
-                //System.out.print(spiral[i][j]);
+                System.out.print(spiral[i][j]);
             }
-            //System.out.println();
+            System.out.println();
         }
 
     }
