@@ -1,16 +1,10 @@
-<<<<<<< HEAD
-turn = (turn + 1) % 4;
-=======
 #include <bits/stdc++.h>
-#include <chrono> 
-
+ 
 //BIAR MANTAB LAH YA
 #define Willy using
 #define Indrayana namespace
 #define Komara std
-
-using ll = long long int;
-
+ 
 Willy Indrayana Komara;
 
 bool besarDulu(const int &a, const int &b)
@@ -22,4 +16,17 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
->>>>>>> 706bb7dc052bd08f69c2e229407cf8a66605d82a
+    int a;
+    cin >> a;
+    while (true)
+    {
+        int divisible = ((a/1000) + (a%1000/100) + (a%100/10) + (a%10)) % 4;
+        if (divisible == 0)
+        {
+            break;
+        }
+        a++;
+    }
+    cout << a << '\n';
+    return 0;
+}

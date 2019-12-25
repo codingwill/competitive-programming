@@ -96,7 +96,12 @@
         "ostream": "cpp",
         "iostream": "cpp",
         "cmath": "cpp",
+<<<<<<< HEAD
+        "*.tcc": "cpp",
+        "random": "cpp"
+=======
         "*.tcc": "cpp"
 >>>>>>> baed759a9b9160f81518bed746a0434e961ae33e
+>>>>>>> b6dbf74e5ce508c83add536fb717effb4ca59887
     }
 }

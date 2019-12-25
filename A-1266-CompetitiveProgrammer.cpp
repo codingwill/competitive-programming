@@ -1,25 +1,20 @@
-<<<<<<< HEAD
-turn = (turn + 1) % 4;
-=======
 #include <bits/stdc++.h>
-#include <chrono> 
-
+ 
 //BIAR MANTAB LAH YA
 #define Willy using
 #define Indrayana namespace
 #define Komara std
-
-using ll = long long int;
-
+ 
 Willy Indrayana Komara;
-
-bool besarDulu(const int &a, const int &b)
-{
-    return a > b;
-}
 
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
->>>>>>> 706bb7dc052bd08f69c2e229407cf8a66605d82a
+
+}
+/*
+60, 120, 180, 240, 300, 360, 420, 480, 540, 600, 660, 720, 780, 840, 900, 960, 1020, 1080, 1140, 1200, 1260, 1320, 1380, 1440, 1500, 1560, 1620, 1680, 1740, 1800
+8301
+
+*/

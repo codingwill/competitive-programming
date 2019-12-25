@@ -16,3 +16,6 @@ int main()
     cout << maks << "\n";
     return 0;
 }
+
+Problem tag/category: Math
+Level (codeforces): 1100
