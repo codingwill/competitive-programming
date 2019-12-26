@@ -172,7 +172,7 @@ public class kriptografi_spiral
         }
 
     }
-
+    boolean status = false;
     public static void main(String args[])
     {
         input = new Scanner(System.in);
