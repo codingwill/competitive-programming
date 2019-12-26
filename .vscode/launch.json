@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - kriptografi_spiral",
+            "request": "launch",
+            "mainClass": "kriptografi_spiral",
+            "projectName": "RoadToCPGemastikICPC2020_f5a1494b"
+        }
+    ]
+}

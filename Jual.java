@@ -19,7 +19,6 @@ public class Jual {
 		penjualan();
 	}
 
-	
 	static void penjualan() {
 		String namaPer1[] = new String[30];
 		String person1[] = new String[30];

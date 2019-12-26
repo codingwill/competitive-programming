@@ -3,194 +3,186 @@ import java.util.*;
 public class kriptografi_spiral
 {
     static Scanner input;
-    static String plain;
-    static String cipher;
     static int ordo;
-    static int sisaX;
+    static int sisaKosong;
     static char spiral[][];
     static boolean sudahIsi[][];
     static char arr[];
-    static int ujungX;
-    static int ujungY;
-    static int awalX;
-    static int awalY;
+    static int ujungBaris;
+    static int ujungKolom;
+    static int awalBaris;
+    static int awalKolom;
     static int x, y;
     static int plainIndex;
     static int sisaSel;
-    static void encrypt()
+    static String simbol = "$";
+    static String encrypt(String target)
     {
+        String hasil = new String("");
         spiral = new char[ordo][ordo];
-        sudahIsi= new boolean[ordo][ordo];
-        arr = new char[5];
-
-        //System.out.println(arr[0]);
-        ujungX = ordo-1;
-        ujungY = ordo-1;
-        awalX = 0;
-        awalY = 0;
+        ujungBaris = ordo-1; //X -> baris
+        ujungKolom = ordo-1; //Y -> kolom
+        awalBaris = 0;
+        awalKolom = 0;
         x = 0;
         y = 0;
         plainIndex = 0;
-        sisaSel = (int) Math.sqrt(Math.ceil(Math.sqrt(plain.length()))) - plain.length(); //untuk nyimpen huruf X atau sisa sel yang kosong
 
-        for (int i = 0; i < sisaX; i++)
+        for (int i = 0; i < sisaKosong; i++)
         {
-            plain += "$";
+            target += simbol;
         }
-
+        //System.out.println(sisaKosong);
         for (int i = 0; i < Math.ceil((float)ordo/2); i++)
         //abcdefghijklmnopq
         {
             //genap atau kolom
-            for (int j = awalY; j <= ujungY; j++)
+            for (int j = awalKolom; j <= ujungKolom; j++)
             {
-                spiral[awalX][j] = plain.charAt(plainIndex);
+                spiral[awalBaris][j] = target.charAt(plainIndex);
                 plainIndex++; //1
             }
-            awalX++;
+            awalBaris++;
 
-            for (int j = awalX; j <= ujungX; j++)
+            for (int j = awalBaris; j <= ujungBaris; j++)
             {
-                spiral[j][ujungY] = plain.charAt(plainIndex);
+                spiral[j][ujungKolom] = target.charAt(plainIndex);
                 plainIndex++;
             }
-            ujungY--;
+            ujungKolom--;
 
-            if (awalY <= ujungY)
+            if (awalKolom <= ujungKolom)
             {
-                for (int j = ujungY; j >= awalY; j--)
+                for (int j = ujungKolom; j >= awalKolom; j--)
                 {
-                    spiral[ujungX][j] = plain.charAt(plainIndex);
+                    spiral[ujungBaris][j] = target.charAt(plainIndex);
                     plainIndex++;
                 }
             }
-            ujungX--;
+            ujungBaris--;
 
-            if (awalX <= ujungX)
+            if (awalBaris <= ujungBaris)
             {
-                for (int j = ujungX; j >= awalX; j--)
+                for (int j = ujungBaris; j >= awalBaris; j--)
                 {
-                    spiral[j][awalY] = plain.charAt(plainIndex);
+                    spiral[j][awalKolom] = target.charAt(plainIndex);
                     plainIndex++;
                 }
             }
-            awalY++;
+            awalKolom++;
         }
 
-        for (int i = 0; i*i < plain.length(); i++)
+        for (int i = 0; i*i < target.length(); i++)
         {
-            for (int j = 0; j*j < plain.length(); j++)
+            for (int j = 0; j*j < target.length(); j++)
             {
-                cipher += spiral[j][i];
+                hasil += spiral[j][i];
             }
-            //System.out.println();
         }
-        System.out.print("Hasil encrypt: ");
-        System.out.println(cipher);
-        for (int i = 0; i*i < plain.length(); i++)
+        for (int i = 0; i*i < target.length(); i++)
         {
-            for (int j = 0; j*j < plain.length(); j++)
+            for (int j = 0; j*j < target.length(); j++)
             {
                 System.out.print(spiral[i][j] + " ");
             }
             System.out.println();
         }
+        return hasil;
     }
 
-    static void decrypt()
+    static String decrypt(String target)
     {
-        cipher = "";
+        String hasil = new String("");
         spiral = new char[ordo][ordo];
         sudahIsi= new boolean[ordo][ordo];
         arr = new char[5];
-
-        //System.out.println(arr[0]);
-        ujungX = ordo-1;
-        ujungY = ordo-1;
-        awalX = 0;
-        awalY = 0;
+        ujungBaris = ordo-1;
+        ujungKolom = ordo-1;
+        awalBaris = 0;
+        awalKolom = 0;
         x = 0;
         y = 0;
         plainIndex = 0;
-        
-        for (int i = 0; i*i < cipher.length(); i++)
+
+        for (int i = 0; i*i < target.length(); i++)
         {
-            for (int j = 0; j*j < cipher.length(); j++)
+            for (int j = 0; j*j < target.length(); j++)
             {
-                spiral[j][i] = cipher.charAt(plainIndex);
+                spiral[j][i] = target.charAt(plainIndex);
                 plainIndex++;
             }
-            //System.out.println();
         }
-        //System.out.println("Ordo = " + ordo);
         for (int i = 0; i < Math.ceil((float)ordo/2); i++)
         //abcdefghijklmnopq
         {
             //genap atau kolom
-            for (int j = awalY; j <= ujungY; j++)
+            for (int j = awalKolom; j <= ujungKolom; j++)
             {
-                plain += spiral[awalX][j];
+                hasil += spiral[awalBaris][j];
             }
-            awalX++;
+            awalBaris++;
 
-            for (int j = awalX; j <= ujungX; j++)
+            for (int j = awalBaris; j <= ujungBaris; j++)
             {
-                plain += spiral[j][ujungY];
+                hasil += spiral[j][ujungKolom];
             }
-            ujungY--;
+            ujungKolom--;
 
-            if (awalY <= ujungY)
+            if (awalKolom <= ujungKolom)
             {
-                for (int j = ujungY; j >= awalY; j--)
+                for (int j = ujungKolom; j >= awalKolom; j--)
                 {
-                    plain += spiral[ujungX][j];
+                    hasil += spiral[ujungBaris][j];
                 }
             }
-            ujungX--;
+            ujungBaris--;
 
-            if (awalX <= ujungX)
+            if (awalBaris <= ujungBaris)
             {
-                for (int j = ujungX; j >= awalX; j--)
+                for (int j = ujungBaris; j >= awalBaris; j--)
                 {
-                    plain += spiral[j][awalY];
+                    hasil += spiral[j][awalKolom];
                     plainIndex++;
                 }
             }
-            awalY++;
+            awalKolom++;
         }
-        plain = plain.replace("$", "");
-        
-        System.out.print("Hasil decrypt: ");
-        System.out.println(plain);
-        for (int i = 0; i*i < spiral.length; i++)
-        {
-            for (int j = 0; j*j < spiral.length; j++)
-            {
-                System.out.print(spiral[i][j]);
-            }
-            System.out.println();
-        }
-
+        return hasil.replace(simbol, "");
     }
+
     boolean status = false;
     public static void main(String args[])
     {
         input = new Scanner(System.in);
         System.out.print("Masukkan plain text: ");
-        plain = input.nextLine();
-        cipher = new String();
-        ordo = (int)Math.ceil(Math.sqrt((double)plain.length()));
-        sisaX = (ordo*ordo) % plain.length();
+        String plain = input.nextLine();
+        String cipher = new String();
+        ordo = (int)(Math.ceil(Math.sqrt((double)plain.length())));
+        sisaKosong = (ordo*ordo) - plain.length();
         //System.out.println(ordo);
-        encrypt();
-        System.out.print("Masukkan cipher text: ");
-        cipher = input.nextLine();
+        System.out.println("Hasil enkripsi: " + encrypt(plain));
+        cipher = cekCipher("Masukkan cipher text: ");
         ordo = (int) Math.sqrt(cipher.length());
-        decrypt();
-        //System.out.println(spiral[0][0]);
-        //System.out.println();
-        //System.out.println(spiral[1][0]);
+        System.out.println("Hasil dekripsi: " + decrypt(cipher));
     }
+
+    static String cekCipher(String pertanyaan)
+		{
+            boolean invalid = true;
+			String temp = new String("");
+			while (invalid)
+			{
+                invalid = false;
+                System.out.print(pertanyaan);
+				temp = input.nextLine();
+                if (Math.sqrt(temp.length()) - (int)Math.sqrt(temp.length()) > 1e-6)
+                {
+                    invalid = true;
+                }
+				if (invalid) System.out.println("Input yang Anda masukkan BUKAN Spiral Cipher Text!");
+			}
+			return temp;
+		}
 }
 /*
 asdfghjkl
@@ -198,4 +190,25 @@ asd
 klf
 jhg
 asdklfjhg
+i o i
+o i o
+i o i
+
+for (int i = 0; i*i < target.length(); i++)
+{
+    for (int j = 0; j*j < target.length(); j++)
+    {
+        System.out.print(spiral[i][j] + " ");
+    }
+    System.out.println();
+}
+
+for (int i = 0; i*i < spiral.length; i++)
+{
+    for (int j = 0; j*j < spiral.length; j++)
+    {
+        System.out.print(spiral[i][j]);
+    }
+    System.out.println();
+}
 */
