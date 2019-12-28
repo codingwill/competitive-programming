@@ -7,11 +7,6 @@
  
 Willy Indrayana Komara;
 
-bool besarDulu(const int &a, const int &b)
-{
-    return a > b;
-}
-
 using ll = long long int;
 vector<ll> s, sCopy;
 

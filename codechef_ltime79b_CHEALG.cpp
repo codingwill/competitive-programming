@@ -7,11 +7,6 @@
  
 Willy Indrayana Komara;
 
-bool besarDulu(const int &a, const int &b)
-{
-    return a > b;
-}
-
 int main()
 {
     ios_base::sync_with_stdio(false);
@@ -49,4 +44,5 @@ int main()
         //cout << s2 << endl;
         s1.length() > s2.length() ? cout << "YES\n" : cout << "NO\n";
     }
+    return 0;
 }
