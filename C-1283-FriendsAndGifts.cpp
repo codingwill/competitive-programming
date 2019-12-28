@@ -46,6 +46,7 @@ int main()
                 int temp = f.back();
                 f.pop_back();
                 giveto[i] = f.back();
+                f.pop_back();
                 f.push_back(temp);
                 continue;
             }
