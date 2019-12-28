@@ -37,23 +37,35 @@ int main()
         }
     }
     //cout << f.size() << endl;
+    int befIndex;
     for (int i = 0; i < n; i++)
     {
         if (giveto[i] == 0)
         {
             if (i+1 == f.back())
             {
+                if (f.size() == 1)
+                {
+                    giveto[i] = f.back();
+                    f.pop_back();
+                    swap(giveto[i], giveto[befIndex]);
+                    befIndex = i;
+                    continue;
+                }
                 int temp = f.back();
                 f.pop_back();
                 giveto[i] = f.back();
                 f.pop_back();
                 f.push_back(temp);
+                befIndex = i;
                 continue;
             }
             giveto[i] = f.back();
             f.pop_back();
+            befIndex = i;
         }
     }
+    //cout << "t" << endl;
     for (int i = 0; i < n-1; i++)
     {
         cout << giveto[i] << " ";

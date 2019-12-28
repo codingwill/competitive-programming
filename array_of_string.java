@@ -10,6 +10,7 @@ public class array_of_string
         {
             arr[i] = "Hello " + i;
         }
+        input
         System.out.println(arr[1]);
     }
 }

@@ -1,6 +1,6 @@
 #include <bits/stdc++.h>
  
-//BIAR MANTAB LAH YA
+//GAJE CONSTANT
 #define Willy using
 #define Indrayana namespace
 #define Komara std

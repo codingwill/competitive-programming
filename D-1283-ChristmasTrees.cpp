@@ -15,7 +15,7 @@ bool besarDulu(const int &a, const int &b)
 }
 using ll = long long int;
 
-map<int, int> terisi; //koordinat, 1 = terisi || 0 = no
+unordered_map<int, int> terisi; //koordinat, 1 = terisi || 0 = no
 
 int main()
 {

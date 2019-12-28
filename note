@@ -1,0 +1,16 @@
+merah/biru = 3/4
+Jumlah merah + hijau = 27
+2 biru + 1 hijau = 37
+
+mis: 
+p = merah
+q = biru
+r = hijau
+
+3p = 4q
+2q = (3/2)p
+p = (4/3)q
+q = (3/4)p
+p + r = 27
+2q + r = 37
+(3/2)p + r = 37
