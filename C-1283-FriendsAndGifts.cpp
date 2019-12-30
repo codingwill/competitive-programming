@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-#include <vector>
 //BIAR MANTAB LAH YA
 #define Willy using
 #define Indrayana namespace
@@ -7,13 +6,7 @@
  
 Willy Indrayana Komara;
 
-bool besarDulu(const int &a, const int &b)
-{
-    return a > b;
-}
 using ll = long long int;
-
-
 
 int main()
 {
@@ -36,7 +29,6 @@ int main()
             f.push_back(i);
         }
     }
-    //cout << f.size() << endl;
     int befIndex;
     for (int i = 0; i < n; i++)
     {

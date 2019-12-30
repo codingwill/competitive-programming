@@ -22,7 +22,7 @@ int main()
         ll sum = 0;
         for (int i = 1; i*i <= n; i++)
         {
-            if (n % i == 0)
+            if (n % i == 0 && n != 1)
             {
                 sum += i;
                 if (i != 1 && i*i != n)

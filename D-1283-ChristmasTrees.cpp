@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-#include <vector>
 #include <chrono>
 //BIAR MANTAB LAH YA
 #define Willy using
@@ -9,10 +8,6 @@
 Willy Indrayana Komara;
 using namespace std::chrono;
 
-bool besarDulu(const int &a, const int &b)
-{
-    return a > b;
-}
 using ll = long long int;
 
 unordered_map<int, int> terisi; //koordinat, 1 = terisi || 0 = no
