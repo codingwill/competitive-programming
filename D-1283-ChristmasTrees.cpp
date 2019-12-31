@@ -16,6 +16,7 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
+    cout.tie(NULL);
     ll n, m;
     cin >> n >> m;
     vector<ll> tree;
@@ -60,12 +61,12 @@ int main()
     cout << distance << '\n';
     for (ll i = 0; i < m-1; i++)
     {
-        cout << people[i] << ' ';
+        //cout << people[i] << ' ';
     }
     cout << people[m-1] << '\n';
     auto stop = high_resolution_clock::now(); 
     auto duration = duration_cast<microseconds>(stop - start); 
-    //cout << "Time taken by function: " << duration.count()/1000 << " ms" << endl;
+    cout << "Time taken by function: " << duration.count()/1000 << " ms" << endl;
     return 0;
 }
 
