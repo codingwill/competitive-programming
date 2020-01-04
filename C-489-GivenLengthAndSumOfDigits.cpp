@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-i
-=======
 #include <bits/stdc++.h>
  
 //BIAR MANTAB LAH YA
@@ -29,7 +26,7 @@ int main()
     int m, s;
     cin >> m >> s;
 
-    string minim;
+    string minim, maxim;
     int sum = s;
     bool possible = false;
     for (int i = 0; i < m; i++)
@@ -44,15 +41,32 @@ int main()
                 break;
             }
         }
+        if (m > 1 && s == 0) break;
     }
-    if (s == 0 || !possible)
+    
+    sum = s;
+    for (int i = 0; i < m; i++)
+    {
+        for (int j = 9; j >= 0; j--)
+        {
+            if ((i > 0 || j > 0 || (m == 1 && j == 0)) && can(m - i - 1, sum - j))
+            {
+                possible = true;
+                maxim += char('0' + j);
+                sum -= j;
+                break;
+            }
+        }
+        if (m > 1 && s == 0) break;
+    }
+
+    if (!possible)
     {
         cout << "-1 -1\n";
         return 0;
     }
     cout << minim;
-    sort(minim.begin(), minim.end(), highFirst);
-    cout << " " << minim << '\n';
+    //sort(minim.begin(), minim.end(), highFirst);
+    cout << " " << maxim << '\n';
     return 0;
 }
->>>>>>> d67613d4edc23ef04198c20adebe36726bbb58b8
