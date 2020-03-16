@@ -25,11 +25,9 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    ll a, b, c;
-    cin >> a >> b >> c;
-    //cout << setprecision(10) << pow(a, 0.5) + pow(b, 0.5) << ' ' << pow(c, 0.5) << '\n';
-    //cout << setprecision(10) << sqrt(a) + sqrt(b) << ' ' << sqrt(c) << '\n';
-    pow(c, 0.5) - (pow(a, 0.5) + pow(b, 0.5)) > 1e-12 ? cout << "Yes" : cout << "No";
+    int a[] = {1, 1, 1, 2, 1, 2, 1, 5, 2, 2, 1, 5, 1, 2, 1, 14, 1, 5, 1, 5, 2, 2, 1, 15, 2, 2, 5, 4, 1, 4, 1, 51};
+    int i;
+    cin >> i;
+    cout << a[i-1] << endl;
     return 0;
 }
-//3774506968

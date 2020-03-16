@@ -25,11 +25,15 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
-    ll a, b, c;
-    cin >> a >> b >> c;
-    //cout << setprecision(10) << pow(a, 0.5) + pow(b, 0.5) << ' ' << pow(c, 0.5) << '\n';
-    //cout << setprecision(10) << sqrt(a) + sqrt(b) << ' ' << sqrt(c) << '\n';
-    pow(c, 0.5) - (pow(a, 0.5) + pow(b, 0.5)) > 1e-12 ? cout << "Yes" : cout << "No";
+    ll h, w;
+    cin >> h >> w;
+    if (h == 1 || w == 1)
+    {
+        cout << 1 << endl;
+        return 0;
+    }
+    cout << (ll) ceil((double)(h * w) / 2) << endl;
     return 0;
 }
-//3774506968
+//500000000000000000
+//500000000000000000

@@ -29,7 +29,11 @@ int main()
     cin >> a >> b >> c;
     //cout << setprecision(10) << pow(a, 0.5) + pow(b, 0.5) << ' ' << pow(c, 0.5) << '\n';
     //cout << setprecision(10) << sqrt(a) + sqrt(b) << ' ' << sqrt(c) << '\n';
-    pow(c, 0.5) - (pow(a, 0.5) + pow(b, 0.5)) > 1e-12 ? cout << "Yes" : cout << "No";
+    //cout << sqrt(a) + sqrt(b) << ' ' << sqrt(c) << endl;
+    //cout << a + b + sqrt(a * b) << ' ' << c << endl;
+    //a + b + 2 * sqrt(a * b) < c ? cout << "Yes" : cout << "No";
+    //2 * sqrt(a * b) < c - a - b
+    (c - a - b > 0 && 4 * a * b < (c - a - b) * (c - a - b)) ? cout << "Yes" : cout << "No";
     return 0;
 }
 //3774506968
