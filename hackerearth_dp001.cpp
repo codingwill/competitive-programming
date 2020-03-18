@@ -1,6 +1,3 @@
-
-// Sample code to perform I/O:
-
 #include <bits/stdc++.h>
 
 using namespace std;

@@ -23,20 +23,10 @@ int main()
 		v.push_back(temp);
 		temp.clear();
 	}
-	/* debug
-	for (int i = 0; i < n; i++)
-	{
-		for (int j = 0; j < m; j++)
-		{
-			cout << v[i][j] << ' ';
-		}
-		cout << '\n';
-	}
-	*/
-
 	//DP Part
 	//base case
 	dp[0][0] = v[0][0];
+	
 	//Baris
 	for (int i = 1; i < n; i++)
 	{
@@ -57,17 +47,7 @@ int main()
 			dp[i][j] = dp[i-1][j] + dp[i][j-1] - dp[i-1][j-1] + v[i][j];
 		}
 	}
-	/*
-	// Debug
-	for (int i = 0; i < n; i++)
-	{
-		for (int j = 0; j < m; j++)
-		{
-			cout << dp[i][j] << ' ';
-		}
-		cout << '\n';
-	}
-	*/
+
 	int q;
 	cin >> q;
 	while (q--)
