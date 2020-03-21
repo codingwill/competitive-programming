@@ -7,16 +7,6 @@
  
 Willy Indrayana Komara;
 
-bool besarDulu(const int &a, const int &b)
-{
-    return a > b;
-}
-
-bool tupleSort(tuple<int, int, int> &a, tuple<int, int, int> &b)
-{
-    return get<2>(a) > get<2>(b);
-}
-
 using ll = long long int;
 
 int main()
@@ -33,8 +23,7 @@ int main()
         bool sama = true;
         string input;
         string s[2];
-        int p = 0;
-        
+        int p = 0; 
         getline(cin, input);
         for (int j = 0; j < input.length(); j++)
         {
@@ -69,7 +58,6 @@ int main()
                 sama = false;
             }
         }
-        //cout << s[0] << ' ' << s[1] << endl;
         sama ? ans[i] = "SAMA\n" : ans[i] = "BEDA\n";
     }
     for (string n : ans) cout << n;

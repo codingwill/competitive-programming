@@ -10,36 +10,46 @@
             Will's Portfolio Site
         </title>
     </head>
-        <body>
-            <!-- HEADLINE -->
+    <body>
+        <!-- HEADLINE -->
         <h1 class="top"><a class="simple" href="http://wkwkwill.xyz">Will's Dev</a></h1>
         <p class="top">
             Game Development and Programming Portfolio
         </p>
         <ul class="menu" id="myMenu">
-            <li><a class="selected" href="index.html">Home</a></li>
+            <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
-            <li><a href="gamedev.html">Game Dev</a></li>
+            <li><a class="selected" href="gamedev.html">Game Dev</a></li>
             <li><a href="cp.html">Competitive Programming</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
-            
-            
-            <h2 class="title">Beranda</h2>
-            <div class="content">
-                <div class="isicontent">
-                    <p>Situs ini berisi kumpulan portofolio proyek game dan juga beberapa prototype.
-                        Selain itu terdapat pula kumpulan source code penyelesaian soal-soal pemrograman
-                        dari berbagai kontes pemrograman.
-                    </p>
-                    <p>
-                        <i>If you're looking for opportunities to make some projects together (competitive or non-competitive), don't 
-                            hesitate to contact me. Thanks!
-                        </i>
-                    </p>
-                </div>
+        <h2 class="title">Pong</h2>
+        <div class="content">
+            <div class="isicontent">
+                <p>
+                    <iframe frameborder="0" src="https://itch.io/embed-upload/1971648?color=333333" allowfullscreen="" 
+                    width="560" height="315"><a href="https://wkwkwill.itch.io/pong">Play Pong (Tugas 1 - DILo Academy) on itch.io</a></iframe>
+                </p>
             </div>
-            
-            
-        </body>
+        </div>
+
+        <script>
+            window.onscroll = function() {floatingMenu()};
+
+            var header = document.getElementById("myMenu");
+            var sticky = header.offsetTop;
+
+            function floatingMenu() 
+            {
+                if (window.pageYOffset > sticky) 
+                {
+                    header.classList.add("sticky");
+                } 
+                else 
+                {
+                    header.classList.remove("sticky");
+                }
+            }
+        </script>
+    </body>
 </html>

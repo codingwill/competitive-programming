@@ -19,15 +19,37 @@
         <ul class="menu" id="myMenu">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
-            <li><a href="gamedev.html">Game Dev</a></li>
-            <li><a class="selected" href="cp.html">Competitive Programming</a></li>
+            <li><a class="selected" href="gamedev.html">Game Dev</a></li>
+            <li><a href="cp.html">Competitive Programming</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
-        
-        
-        <h2 class="title">Competitive Programming</h2>
+        <h2 class="title">Kendarace</h2>
         <div class="content">
-            <p>Halaman tentang Competitive Programming.</p>
+            <div class="isicontent">
+                <p>
+                    <iframe frameborder="0" src="https://itch.io/embed-upload/1665063?color=333333" allowfullscreen="" width="700" height="420">
+                        <a href="https://wkwkwill.itch.io/ultramanstudio-prototype">Play GEMASTIK PROTOTYPE on itch.io</a></iframe>
+                </p>
+            </div>
         </div>
+
+        <script>
+            window.onscroll = function() {floatingMenu()};
+
+            var header = document.getElementById("myMenu");
+            var sticky = header.offsetTop;
+
+            function floatingMenu() 
+            {
+                if (window.pageYOffset > sticky) 
+                {
+                    header.classList.add("sticky");
+                } 
+                else 
+                {
+                    header.classList.remove("sticky");
+                }
+            }
+        </script>
     </body>
 </html>
