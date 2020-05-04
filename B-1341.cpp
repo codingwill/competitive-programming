@@ -7,13 +7,6 @@
  
 Willy Indrayana Komara;
 
-using ll = long long int;
-
-bool kurungComp(const pair<int, int> &a, const pair<int, int> &b)
-{
-    return a.second < b.second;
-}
-
 int main()
 {
     ios_base::sync_with_stdio(false);
@@ -36,9 +29,9 @@ int main()
         int maks = -1;
         for (int i = 1; i < n-1; i++)
         {
-            if (i >= k-1) l++;
             if (i >= k-1)
             {
+                l++;
                 if (a[i - (k-2)] > a[i - (k-1)] && a[i - (k-2)] > a[i - (k-3)])
                 {
                     //cout << i << endl;
