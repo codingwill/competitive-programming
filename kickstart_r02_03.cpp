@@ -27,41 +27,50 @@ int main()
         cin >> s;
         stack<int> kurungBuka;
         //vector<pair<int, int>> kurung; //kurung buka, kruung tutup
-        map<char, int> key;
+        map<char, ll> key, kTemp;
         key['N'] = 0; key['W'] = 0; key['E'] = 0; key['S'] = 0;
         for (int i = 0; i < s.length(); i++)
         {
+            
+            kTemp['N'] = 0; kTemp['W'] = 0; kTemp['E'] = 0; kTemp['S'] = 0;
             if (s[i] == '(')
             {
                 kurungBuka.push(i);
             }
             else if(s[i] == ')')
             {
-                //kurung.push_back(make_pair(kurungBuka.top(), i));
-                
-                string func = s.substr(kurungBuka.top() + 1, i - kurungBuka.top() - 1);
-                string temp = "";
-                for (int k = 0; k < s[kurungBuka.top()-1] - '0'; k++)
+                stack<int> temp;
+                temp = kurungBuka;
+                while (!temp.empty())
                 {
-                    temp += func;
+                    for (int j = temp.top()+1; j < i; j++)
+                    {
+                        kTemp[s[j]] *= s[temp.top()-1] - '0';
+                    }
+                    temp.pop();
                 }
+                key['N'] += kTemp['N'];
+                key['W'] += kTemp['W'];
+                key['E'] += kTemp['E'];
+                key['S'] += kTemp['S'];
                 s.erase(kurungBuka.top()-1, i - kurungBuka.top() + 2);
-                //cout << temp;
-                s.insert(kurungBuka.top()-1, temp);
-                //cout << s << endl;
-                i = kurungBuka.top()-1 + temp.size()-1;
+                i = kurungBuka.top()-2;
                 kurungBuka.pop();
+                cout << s << endl;
+                cout << key['W'] << endl;
+                //cout << i << endl;
+            }
+            else if (kurungBuka.empty())
+            {
+                if (s[i] == 'N') key['N']++;
+                if (s[i] == 'S') key['S']++;
+                if (s[i] == 'E') key['E']++;
+                if (s[i] == 'W') key['W']++;
             }
         }
-        //cout << kurungBuka.max_size() << endl;
-        int x = 1, y = 1;
-        for (int i = 0; i < s.length(); i++)
-        {
-            if (s[i] == 'N') key['N']++;
-            if (s[i] == 'S') key['S']++;
-            if (s[i] == 'E') key['E']++;
-            if (s[i] == 'W') key['W']++;
-        }
+        //cout << kurungBuka.empty() << endl;
+        ll x = 1, y = 1;
+
         x += key['S'] - key['N'];
         y += key['E'] - key['W'];
 
@@ -71,7 +80,6 @@ int main()
         if (y < 0) y = 1000000000 + y;
         if (x == 0) x = 1000000000;
         if (y == 0) y = 1000000000;
-        //cout << s << endl;
         cout << "Case #" << z  << ": " <<  y << ' ' << x << '\n';
         z++;
     }
