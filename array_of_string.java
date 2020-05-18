@@ -1,16 +1,12 @@
 import java.util.*;
-
+//code by Willy I K
 public class array_of_string
 {
     public static void main(String[] args)
     {
-        Scanner input = new Scanner(System.in);
-        String arr[] = new String[3];
-        for (int i = 0; i < 3; i++)
+        for (int i = 1; i <= 10; i++)
         {
-            arr[i] = "Hello " + i;
+            System.out.print(i + " ");
         }
-        input
-        System.out.println(arr[1]);
     }
 }

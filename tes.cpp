@@ -1,15 +1,8 @@
-#include <iostream>
-#include <string>
+#include <bits/stdc++.h>
 
 using namespace std;
 
-string hallo(string a = " ")
-{
-    return "Halo " + a + "!\n"; 
-}
-
 int main()
 {
-    cout << hallo("Nandhika") + "wkwk" << endl;
-    return 0;
+    
 }
