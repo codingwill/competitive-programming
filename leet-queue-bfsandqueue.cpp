@@ -85,7 +85,7 @@ public:
     int numIslands(vector<vector<char>>& grid) 
     {
         if (grid.empty()) return {};
-        
+
         //variable initialization
         visited.resize(grid.size()*grid[0].size() + 5);
         adj.resize(grid.size()*grid[0].size() + 5);
@@ -125,3 +125,12 @@ int main()
     }
     cout << "The number of islands = " << sol.numIslands(input) << endl;
 }
+
+/*
+willy indrayana komara
+
+ndrayana m
+will koriyama
+
+will nara
+*/
