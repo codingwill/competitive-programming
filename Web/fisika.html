@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="fisika.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<body>
+    <div class="menu" id="myMenu">
+        <div class="drop">
+            <a href="#">
+                Profil <i class="fa fa-caret-down"></i>
+            </a>
+            <div class="sub-menu">
+                <a href="#">Sambutan Kaprodi</a>
+                <a href="#">Sejarah</a>
+                <a href="#">Visi & Misi</a>
+            </div>
+        </div>
+    </div>
+
+<script>
+$(document).ready(function(){
+  $(".drop").click(function(){
+    $this.(".sub-menu").slideToggle("slow");
+  });
+});
+</script>
+
+</body>
+</html>

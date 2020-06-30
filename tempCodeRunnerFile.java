@@ -1,1 +1,1 @@
-spiral[j][ujungKolom] = target.charAt(plainIndex);
+
