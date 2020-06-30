@@ -1,0 +1,200 @@
+body {
+    font-family: 'Work Sans', sans-serif;
+}
+
+h1 {
+    font-weight: bold;
+    color: tomato;
+    font-family: 'Montserrat', sans-serif;
+}
+
+h2, h3, h4, h5, h6 {
+    font-family: 'Quicksand', serif;
+}
+
+p {
+    text-align: justify;
+    color: rgb(56, 56, 56);
+    line-height: 1.5;
+}
+
+table, th, td {
+    padding: 3px 0px 3px 10px;
+  }
+
+iframe, img {
+    display: block;
+    margin: auto;
+}
+
+.titlebox {
+    background-color: rgb(216, 216, 216);
+    padding: 5px;
+    border-radius: 7px;
+    font-weight: bold;
+    color: rgb(85, 85, 85);
+}
+
+.title {
+    border-color: tomato;
+    border-style: solid;
+    border-width: 0 0 0px 0;
+    border-radius: 15px 15px 0 0;
+    background-color: rgb(233, 233, 233);
+    padding: 10px;
+    min-width: 50%;
+    max-width: 700px;
+    margin: 15px auto 5px auto;
+    text-align: center;
+    color: rgb(80, 80, 80);
+}
+
+.content {
+    font-size: 12pt;
+    border-radius: 0 0 15px 15px;
+    background-color: rgb(233, 233, 233);
+    padding: 10px;
+    min-width: 50%;
+    max-width: 700px;
+    margin: 5px auto 15px auto;
+}
+
+.isicontent {
+    margin: 0 40px;
+}
+
+.top {
+    text-align: center;
+}
+
+.simple {
+    text-decoration: none;
+    color: tomato;
+}
+
+.mainarea {
+    background-image: url("http://wkwkwill.xyz/img/bg2.png");
+    background-repeat: repeat;
+    background-size: 35%;
+    
+}
+
+#drop {
+    float: left;
+    text-align: center;
+    border-style: solid;
+    border-color: rgb(204, 204, 204);
+    border-width: 1px 0;
+    margin: 0;
+    list-style: none;
+    padding: 3px ;
+    background-color: white;
+}
+
+.menu li {
+    display: inline;  
+}
+.menu a {
+    display: inline-block;
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+}
+#drop a:hover {
+    background-color: #6DA7D6;
+    border-radius:  0px;
+    color: white;
+    border-width: 0;
+    transition-duration: 0.7s;
+}
+
+#drop:hover .sub-menu {
+    display: block;
+}
+
+#submenu {
+    ;
+}
+
+#sub-menu {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+#sub-menu a {
+    float: none;
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+#sub-menu a:hover {
+    opacity: 1;
+    transition-duration: 0.7s;
+}
+
+.selected {
+    border-style: solid;
+    border-width: 0 0 3px 0;
+    border-color: tomato;
+    border-radius: 0px;
+    margin-bottom: -3px;
+    color: white;
+}
+
+.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+.button {
+    font-family: Quicksand;
+    display: inline-block;
+    border-radius: 4px;
+    background-color: rgb(163, 163, 163);
+    border: none;
+    color: #FFFFFF;
+    text-align: center;
+    font-size: 16px;
+    padding: 8px;
+    width: 250px;
+    transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+  }
+  
+  .button:hover {
+    background-color: tomato;
+  }
+
+  .button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+  }
+  
+  .button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+  }
+  
+  .button:hover span {
+    padding-right: 25px;
+
+  }
+  
+  .button:hover span:after {
+    opacity: 1;
+    right: 0;
+  }
