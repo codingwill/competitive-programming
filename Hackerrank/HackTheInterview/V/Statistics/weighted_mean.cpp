@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+/*
+** Author: wkwkwill (Willy I. K.)
+** 2020/07/05
+*/
+
+using namespace std;
+using ll = long long int;
+
+
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(0);
+    int n;
+    cin >> n;
+    vector<ll> a;
+    double mean = 0;
+    ll sum = 0;
+    for (int i = 0; i < n; ++i)
+    {
+        ll input;
+        cin >> input;
+        a.push_back(input);
+    }
+    for (int i = 0; i < n; ++i)
+    {
+        ll input;
+        cin >> input;
+        sum += input;
+        mean += a[i] * input;
+    }
+    mean = mean / sum;
+    cout << fixed << setprecision(1) << mean << '\n';
+}
