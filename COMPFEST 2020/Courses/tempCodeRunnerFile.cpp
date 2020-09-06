@@ -1,2 +1,2 @@
 
-    for (int i = 0; i < 100005; ++i)
+    cout << ans / divisor << '\n';
