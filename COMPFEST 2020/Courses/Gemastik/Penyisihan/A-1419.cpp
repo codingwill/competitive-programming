@@ -62,49 +62,48 @@ ll Combin(ll n, ll r)
     return fact(n) / ((fact(r) * fact(n - r)) % MOD); 
 } 
 
-
 void solve()
 {
-    vector<ll> baris;
-    for (int i = 1; i < 32; ++i)
-    {
-        baris.push_back(fastpow(2, i) - 1);
-    }
-    vector<ll> countCell;
-    for (int i = 0; i < baris.size(); ++i)
-    {
-        countCell.push_back(baris[i] * (baris[i] + 1) / 2);
-    }
-    //for (auto n : countCell) cout << n << ' ';
-    //cout << '\n';
     int t;
     cin >> t;
     while (t--)
     {
-        ll x;
-        cin >> x;
-        if (x == 1)
+        ll n;
+        cin >> n;
+        ll raze = 0, breach = 0;
+        string s;
+        cin >> s;
+        for (int i = 0; i < s.length(); ++i)
         {
-            cout << 1 << '\n';
-            continue;
+            int input = s[i] - '0';
+            if (i % 2 == 0)
+            {
+                if (input % 2 == 1)
+                {
+                    raze++;
+                }
+            }
+            else
+            {
+                if (input % 2 == 0)
+                {
+                    breach++;
+                }
+            }
         }
-        int i = 0;
-        ll sum = 0;
-        while (sum <= x || sum < 0)
+        if (n % 2 == 1)
         {
-            sum += countCell[i];
-            i++;
+            if (raze >= 1)
+            {
+                cout << 1 << '\n';
+            }
+            else cout << 2 << '\n';
         }
-        cout << i - 1 << '\n';
-    }
+        else
+        {
+            if (breach >= 1) cout << 2 << '\n';
+            else cout << 1 << '\n';
+        }
+        
+    }   
 }
-
-/*
-1 3 7 15 31 63
-1 6 
-
-1 3 6 10 15 21
-
-1000000000000000000
-2305843008139952128
-*/

@@ -5,12 +5,12 @@
 */
 using namespace std;
 using ll = long long int;
-
+ 
 ll BIG = 1e18 + 1;
 ll MOD = 1e9 + 7;
-
+ 
 void solve();
-
+ 
 ll fastpow(ll x, ll y, ll n = BIG) 
 {
     x %= n;
@@ -23,24 +23,24 @@ ll fastpow(ll x, ll y, ll n = BIG)
     }
     return ans;
 }
-
+ 
 bool sortPairSecond(pair<ll, ll> &a, pair<ll, ll> &b)
 {
     return a.second < b.second;
 }
-
+ 
 bool sortPairFirst(pair<int, int> &a, pair<int, int> &b)
 {
     if (a.first == b.first) return a.second < b.second;
     return a.first < b.first;
 }
-
+ 
 bool sortPairFirstDec(pair<int, int> &a, pair<int, int> &b)
 {
     if (a.first == b.first) return a.second < b.second;
     return a.first > b.first;
 }
-
+ 
 int main()
 {
 	ios_base::sync_with_stdio(false);
@@ -61,50 +61,53 @@ ll Combin(ll n, ll r)
 { 
     return fact(n) / ((fact(r) * fact(n - r)) % MOD); 
 } 
-
-
+ 
+ 
 void solve()
 {
-    vector<ll> baris;
-    for (int i = 1; i < 32; ++i)
+    int n;
+    cin >> n;
+    vector<int> a(n);
+    for (int i = 0; i < n; ++i)
     {
-        baris.push_back(fastpow(2, i) - 1);
+        cin >> a[i];
     }
-    vector<ll> countCell;
-    for (int i = 0; i < baris.size(); ++i)
+    sort(a.begin(), a.end());
+    int index = 0;
+    vector<int> ans(n);
+    if (n <= 2)
     {
-        countCell.push_back(baris[i] * (baris[i] + 1) / 2);
+        cout << 0 << '\n';
+        for (auto n : a) cout << n << ' ';
+        cout << '\n';
+        return;
     }
-    //for (auto n : countCell) cout << n << ' ';
-    //cout << '\n';
-    int t;
-    cin >> t;
-    while (t--)
+    for (int i = 1; i < n; i += 2)
     {
-        ll x;
-        cin >> x;
-        if (x == 1)
-        {
-            cout << 1 << '\n';
-            continue;
-        }
-        int i = 0;
-        ll sum = 0;
-        while (sum <= x || sum < 0)
-        {
-            sum += countCell[i];
-            i++;
-        }
-        cout << i - 1 << '\n';
+        ans[i] = a[index];
+        index++;
     }
+    for (int i = 0; i < n; i += 2)
+    {
+        ans[i] = a[index];
+        index++;
+    }
+    ll count = 0;
+    for (int i = 1; i < n; i += 2)
+    {
+        if (i == n-1) break;
+        if (ans[i] < ans[i-1] && ans[i] < ans[i+1])
+            count++;
+    }
+    cout << count << '\n';
+    for (auto n : ans) cout << n << ' ';
+    cout << '\n';
 }
-
+ 
 /*
-1 3 7 15 31 63
-1 6 
-
-1 3 6 10 15 21
-
-1000000000000000000
-2305843008139952128
+ 
+3 1 4 2 5
+1 1 1 1 1 
+ 
+7 1 6 2 4 3 5
 */

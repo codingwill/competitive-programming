@@ -5,12 +5,12 @@
 */
 using namespace std;
 using ll = long long int;
-
+ 
 ll BIG = 1e18 + 1;
 ll MOD = 1e9 + 7;
-
+ 
 void solve();
-
+ 
 ll fastpow(ll x, ll y, ll n = BIG) 
 {
     x %= n;
@@ -23,24 +23,24 @@ ll fastpow(ll x, ll y, ll n = BIG)
     }
     return ans;
 }
-
+ 
 bool sortPairSecond(pair<ll, ll> &a, pair<ll, ll> &b)
 {
     return a.second < b.second;
 }
-
+ 
 bool sortPairFirst(pair<int, int> &a, pair<int, int> &b)
 {
     if (a.first == b.first) return a.second < b.second;
     return a.first < b.first;
 }
-
+ 
 bool sortPairFirstDec(pair<int, int> &a, pair<int, int> &b)
 {
     if (a.first == b.first) return a.second < b.second;
     return a.first > b.first;
 }
-
+ 
 int main()
 {
 	ios_base::sync_with_stdio(false);
@@ -61,50 +61,52 @@ ll Combin(ll n, ll r)
 { 
     return fact(n) / ((fact(r) * fact(n - r)) % MOD); 
 } 
-
-
+ 
+ 
 void solve()
 {
-    vector<ll> baris;
-    for (int i = 1; i < 32; ++i)
-    {
-        baris.push_back(fastpow(2, i) - 1);
-    }
-    vector<ll> countCell;
-    for (int i = 0; i < baris.size(); ++i)
-    {
-        countCell.push_back(baris[i] * (baris[i] + 1) / 2);
-    }
-    //for (auto n : countCell) cout << n << ' ';
-    //cout << '\n';
     int t;
     cin >> t;
     while (t--)
     {
-        ll x;
-        cin >> x;
-        if (x == 1)
+        int n, x;
+        cin >> n >> x;
+        vector<int> a(n);
+        a.push_back(x);
+        ll minus = 0, plus = 0;
+        bool infected = false;
+        for (int i = 0; i < n; ++i)
         {
-            cout << 1 << '\n';
-            continue;
+            cin >> a[i];
+            if (x - a[i] > 0) minus += abs(x - a[i]);
+            else plus += abs(x - a[i]);
+            if (a[i] == x) infected = true; 
         }
-        int i = 0;
-        ll sum = 0;
-        while (sum <= x || sum < 0)
+        sort(a.begin(), a.end());
+        //for (auto n : a) cout << n << ' ';
+        //cout << '\n';
+
+        if (plus == minus)
         {
-            sum += countCell[i];
-            i++;
+            if (plus == 0 && minus == 0) cout << 0 << '\n';
+            else cout << 1 << '\n';
         }
-        cout << i - 1 << '\n';
+        else
+        {
+            //cout << plus << ' ' << minus << '\n';
+            //int aver = (plus-minus) / n;
+            //for (auto n : a) cout << aver - n << ' ';
+            if (infected) cout << 1 << '\n';
+            else cout << 2 << '\n';
+        }
+        
     }
 }
 
 /*
-1 3 7 15 31 63
-1 6 
+9 38
+-21 83 50 -59 -77 15 -71 -78 20
 
-1 3 6 10 15 21
++59 -45 -12 +97 +115 +23 +109 +116 +18
 
-1000000000000000000
-2305843008139952128
 */
