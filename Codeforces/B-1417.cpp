@@ -68,7 +68,7 @@ bool MySort(pair<int, int> &a, pair<int, int> &b)
     if (a.first == b.first) return a.second < b.second;
     return a.first < b.first;
 }
-
+ 
 void solve()
 {
     int t;
@@ -76,83 +76,69 @@ void solve()
     int total = t;
     while (t--)
     {
-        int n, k;
-        cin >> n >> k;
-        vector<pair<int, int>> a;
+        int n, T;
+        cin >> n >> T;
+        vector<int> a(n);
+        map<int, int> count;
         for (int i = 0; i < n; ++i)
         {
-            int x, y;
-            cin >> x >> y;
-            a.push_back(make_pair(x, y));
+            cin >> a[i];
+            count[a[i]]++;
         }
-        sort(a.begin(), a.end(), sortPairFirst);
-        int count = 0;
-        int last = 0;
         for (int i = 0; i < n; ++i)
-        {   
-            if (i == 0)
+        {
+            if (T % 2 == 1)
             {
-                last = a[i].first;
-                if ((a[i].second - last) % k == 0)
-                {
-                    count += (a[i].second - last) / k;
-                }
-                else
-                {
-                    count += (a[i].second - last) / k + 1;
-                }
-                last = a[i].second + (a[i].second - last) % k;
+                if (a[i] <= T/2) cout << 1 << ' ';
+                else cout << 0 << ' ';
             }
             else
             {
-                if (last < a[i].second)
+                if (a[i] < T/2) 
+                    cout << 1 << ' ';
+                else if (a[i] > T/2) 
+                    cout << 0 << ' ';
+                else
                 {
-                    if (last >= a[i].first)
+                    if (count[a[i]] % 2 == 1)
                     {
-                        if ((a[i].second - last) % k == 0)
-                        {
-                            count += (a[i].second - last) / k;
-                        }
-                        else
-                        {
-                            count += (a[i].second - last) / k + 1;
-                        }
-                        
+                        cout << 0 << ' ';
+                        count[a[i]]--;
                     }
                     else
                     {
-                        last = a[i].first;
-                        if ((a[i].second - last) % k == 0)
-                        {
-                            count += (a[i].second - last) / k;
-                        }
-                        else
-                        {
-                            count += (a[i].second - last) / k + 1;
-                        }
+                        cout << 1 << ' ';
+                        count[a[i]]--;
                     }
-                    last = a[i].second + (a[i].second - last) % k;
                 }
                 
+                
             }
-            //cout << count << ' ';
+            
         }
-        //cout << '\n';
-        cout << "Case #" << total - t << ": "; 
-        cout << count;
         cout << '\n';
+ 
     }
 }
  
 /*
+1
+7 3
+12 16
+1 3
+4 5
+7 9
+10 11
+17 19
+19 20
  
 6 6
 9 10 12 4 7 2
 3 4 6 0 1 0
 0 0 0 0
-
+ 
 4 6 1 2 3 5 
-
+ 
 K = 5
 1 3
 4 5
