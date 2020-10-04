@@ -111,13 +111,9 @@ void solve()
                         count[a[i]]--;
                     }
                 }
-                
-                
             }
-            
         }
         cout << '\n';
- 
     }
 }
  

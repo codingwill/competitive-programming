@@ -1,121 +1,124 @@
 #include <bits/stdc++.h>
 /*
-** Author: wkwkwill (Willy I. K.)
-** 2020/09/19
+by: wkwkwill
+2020/10/03
 */
 using namespace std;
 using ll = long long int;
- 
-ll BIG = 1e18 + 1;
-ll MOD = 1e9 + 7;
- 
-void solve();
- 
-ll fastpow(ll x, ll y, ll n = BIG) 
-{
-    x %= n;
-    ll ans = 1;
-    while (y > 0) 
-    {
-        if (y & 1) ans = (ans * x) % n;
-        x = (x * x) % n;
-        y >>= 1;
-    }
-    return ans;
-}
- 
-bool sortPairSecond(pair<ll, ll> &a, pair<ll, ll> &b)
-{
-    return a.second < b.second;
-}
- 
-bool sortPairFirst(pair<int, int> &a, pair<int, int> &b)
-{
-    if (a.first == b.first) return a.second < b.second;
-    return a.first < b.first;
-}
- 
-bool sortPairFirstDec(pair<int, int> &a, pair<int, int> &b)
-{
-    if (a.first == b.first) return a.second < b.second;
-    return a.first > b.first;
-}
- 
-int main()
-{
-	ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    solve();
-	return 0;
-}
-  
-ll fact(ll n) 
-{ 
-    ll res = 1; 
-    for (ll i = 2; i <= n; i++) 
-        res = (res * i) % MOD; 
-    return res; 
-} 
-  
-ll Combin(ll n, ll r) 
-{ 
-    return fact(n) / ((fact(r) * fact(n - r)) % MOD); 
-} 
- 
- 
-bool MySort(pair<int, int> &a, pair<int, int> &b)
-{
-    if (a.first == b.first) return a.second < b.second;
-    return a.first < b.first;
-}
+
+
 
 void solve()
 {
     int t;
-    cin >> t;
-    int total = t;
+    cin  >> t;
     while (t--)
     {
-        int n, k;
-        cin >> n >> k;
-        vector<int> a(n);
-        for (int i = 0; i < n; ++i)
+        int n;
+        cin >> n;
+        vector<vector<pair<int, int>>> adj(n+5);
+        vector<int> ibu(n+5);
+        vector<bool> vis(n+5, false);
+        int minim = INT32_MAX;
+        for (int i = 0; i < n-1; ++i)
         {
-            cin >> a[i];
+            int a, b;
+            cin >> a >> b;
+            adj[a].push_back(make_pair(i+2, b));
+            if (a == 1)
+            {
+                minim = min(minim, b);
+            }
+            ibu[i+2] = a;
+            
         }
-        sort(a.begin(), a.end());
+        queue<int> q;
+        q.push(1);
         int count = 0;
-        for (int i = 1; i < n; ++i)
+        bool isMinim = false;
+        vector<int> ans;
+        while (!q.empty())
         {
-            count += (k - a[i]) / a[0];
+            minim = INT32_MAX;
+            int node = q.front();
+            q.pop();
+            if (vis[node]) continue;
+            vector<pair<int, int>> temp = adj[node];
+            for (int i = 0; i < (int)temp.size(); ++i)
+            {
+                minim = min(minim, temp[i].second);
+            }
+            for (int i = 0; i < (int)temp.size(); ++i)
+            {
+                int anak = ibu[temp[i].first];
+                q.push(temp[i].first);
+                if (node == 1)
+                {
+                    if (temp[i].second == minim)
+                    { 
+                        isMinim = true;
+                    }
+                    else
+                    {
+                        temp[i].second = minim + (temp[i].second - minim) * 2;   
+                    }
+                }
+                else
+                {
+                    if (temp[i].second == minim)
+                    { 
+                        isMinim = true;
+                        temp[i].second = temp[i].second + adj[ibu[anak]][anak].second;
+                    }
+                    else
+                    {
+                        temp[i].second = minim + ((temp[i].second - minim) * 2) + adj[ibu[anak]][anak].second;
+                    }
+                }
+            }
+            if (temp.size() == 0)
+            {
+                ans.push_back(adj[ibu[node]][0].second);
+                isMinim = false;
+                count = 0;
+            }
+            vis[node] = true;
         }
-        cout << count << '\n';
+        //sort(ans.begin(), ans.end());
+        vector<int> query(100500, 0);
+        int index = 0;
+        cout << minim << '\n';
+        for (auto n : ans)
+        {
+            cout << n << ' ';
+        }
+        cout << '\n';
+        for (int i = 0; i <= query.size(); ++i)
+        {
+            if (i == ans[index])
+            {
+                index++;
+                query[i] = index;
+            }
+            else
+            {
+                query[i] = index;
+            }
+        }
+        int Q;
+        cin >> Q;
+        for (int i = 0; i < Q; ++i)
+        {
+            int input;
+            cin >> input;
+            cout << query[input] << '\n';
+        }
     }
 }
- 
-/*
-1
-7 3
-12 16
-1 3
-4 5
-7 9
-10 11
-17 19
-19 20
- 
-6 6
-9 10 12 4 7 2
-3 4 6 0 1 0
-0 0 0 0
 
-4 6 1 2 3 5 
-
-K = 5
-1 3
-4 5
-5 6
-6 7
-7 8
-8 9
-*/
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    solve();
+}
