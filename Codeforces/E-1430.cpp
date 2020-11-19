@@ -193,7 +193,7 @@ STEP LEBIH LENGKAP:
 5
 aaaza
 13425
-00020 = 5
+00020 = 2
 
 azaaa
 12345
