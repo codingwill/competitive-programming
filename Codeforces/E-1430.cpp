@@ -107,36 +107,95 @@ int sequence(int a, int b)
 
 /*================ SOLUTION ================*/
 
-vector<int> fenwick()
+int N = 200500, n;
+vector<int> fenwick(N, 0);
+
+ll fenwickSum(int i)
+{
+	i++;
+    ll sum = 0;
+    while (i > 0)
+    {
+        sum += fenwick[i];
+        i -= i & (-i);
+    }
+    return sum;
+}
+
+void fenwickUpdate(int i, int val)
+{
+	i++;
+    while (i <= N)
+    {
+        fenwick[i] += val;
+        i += i & -i;
+    }
+}
 
 void solve()
 {
-    
+    cin >> n;
+    string s;
+    cin >> s;
+    string t = s;
+    reverse(t.begin(), t.end());
+    vector<queue<int>> charIndex(30);
+    for (int i = 0; i < t.length(); ++i)
+    {
+        int x = t[i] - 'a';
+        charIndex[x].push(i+1);
+    }
+    ll sum = 0;
+    ll ans = 0;
+    int j = 0;
+    for (int i = 0; i < s.length(); ++i)
+    {
+        int x = s[i] - 'a';
+        int num = charIndex[x].front();
+        charIndex[x].pop();
+        ans += sum - fenwickSum(num);
+        fenwickUpdate(num, 1);
+        sum++;
+    }
+    cout << ans << '\n';
 }
  
 /* ========= KOTRETAN ========= \*
-9
-icpcsguru
-urugscpci
-g = 3 icpcsurug
-s = 4 icpcurugs
-i = 8 cpcurugsi
-c = 5 pcurugsci
-p = 6 curugspci
-c - 7 urugscpci
 
 9
 icpcsguru
-967854123
-011145666 = 30
-
+967854123       <= INDEX YANG DITUJU
+011145666 = 30  <= MOVEMENT/SWAP YANG DIBUTUHKAN TIAP CHAR (i = 0 swap, c = 1 swap, p = 1 swap, c = 1 swap, s = 4 swap)
+                CARANYA: UPDATE DAN SORT TIAP CHAR DIMULAI DARI KIRI TAPI JANGAN PAKE SORT, LOGIKANYA PAKE PREFIX SUM
+                         TAPI KARENA KITA MESTI UPDATE DATA TERBARU DI TIAP INDEX CHAR, PREFIX SUM GA VIABLE KARENA O(N) PAS UPDATE
+                         JADI MESTI PAKE FENWICK TREE, ATAU SEGMENT TREE (SESUAI SELERA AJA MAU MAKE YANG MANA). DUA-DUANYA SAMA-SAMA
+                         O(LOG(N)) BUAT UPDATE/GET;
+                LOGIKA : PAS UPDATE INDEX/CHAR BARU, SELISIHKAN TOTAL UPDATE SAMA TOTAL NILAI INDEX KE-1 SAMPAI KE INDEX YANG BARU DIUPDATE
+                         TERUS ISI NILAI 1 DI INDEX YANG BARU DIUPDATE. (ITU SAMA DENGAN LANGKAH SWAP YANG DIBUTUHIN, PERSIS KAYAK INVERSION ARRAY DI 
+                         TOPIK SORTING);
 sort jadi:
 urugscpci
 123456789
 
-
+STEP LEBIH LENGKAP:
+967854123
+9 <- 9 || 0 SWAP
+96 <- 6 || 1 SWAP KARENA 6 HARUS DI URUTAN KE-1
+697 <- 7 || 1 SWAP KARENA 7 HARUS DI URUTAN KE-2
+6798 <- 8 || 1 SWAP KARENA 8 HARUS DI URUTAN KE-3
+67895 <- 5 || 4 SWAP KARENA 5 HARUS DI URUTAN KE-1
+567894 <- 4 || 5 SWAP KARENA 4 HARUS DI URUTAN KE-1
+4567891 <- 1 || 6 SWAP KARENA 1 HARUS DI URUTAN KE-1
+14567892 <- 2 || 6 SWAP KARENA 2 HARUS DI URUTAN KE-2
+124567893 <- 3 || 6 SWAP KARENA 3 HARUS DI URUTAN KE-3
+123456789 (DONE!) || 0 + 1 + 1 + 1 + 4 + 5 + 6 + 6 + 6 = 30 
 
 5
 aaaza
+13425
+00020 = 5
+
+azaaa
+12345
 
 */
