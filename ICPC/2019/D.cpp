@@ -83,7 +83,6 @@ int pre[100500];
 int step = 0;
 set<pair<int, int>> bridge;
 int number[100500];
-
 bool vis[100500];
 stack<int> q;
 
@@ -93,10 +92,8 @@ void newBridge(int parent, int child)
     bridge.insert(make_pair(min(parent, child), max(parent, child)));
 }
 
-vector<vector<int>> adj(200050);
-void dfs(int start, int dest)
+void dfs(vector<vector<int>>& adj, int start, int dest)
 {
-    
     pre[dest] = step++;
     low[dest] = pre[dest];
     int count = 0;
@@ -109,14 +106,7 @@ void dfs(int start, int dest)
             if (low[i] > pre[dest])
             {
                 newBridge(i, dest);
-                //number[dest] = count;
-                //count++;
             }
-            else
-            {
-                //number[dest] = number[i];
-            }
-            
         }
         else if (i != start)
         {
@@ -127,7 +117,6 @@ void dfs(int start, int dest)
 
 void countingGraph(vector<vector<int>>& adj, int start, int dest)
 {
-    
     q.push(start);
     vis[start] = true;
     ll count = 0;
@@ -135,8 +124,6 @@ void countingGraph(vector<vector<int>>& adj, int start, int dest)
     {
         int parent = q.top();
         q.pop();
-        
-        //cout << parent << '\n';
         for (auto &i : adj[parent])
         {
             if (!vis[i])
@@ -151,7 +138,6 @@ void countingGraph(vector<vector<int>>& adj, int start, int dest)
                 {
                     number[i] = number[parent];
                 }
-                
                 vis[i] = true;
                 q.push(i);
             }
@@ -175,30 +161,13 @@ void solve()
     }
     dfs(adj, -1, 1);
     countingGraph(adj, 1, n);
-    /*
-    for (int i = 1; i <= n; ++i)
-    {
-        cout << number[i] << ' ';
-    }
-    cout << '\n';
-    */
-    //cout << adj[2][1] << '\n';
     for (int i = 0; i < q; ++i)
     {
         int s,  t;
         scanf("%d %d", &s, &t);
-        //cout << number[s] << ' ' << number[t] << '\n';
         if (number[s] == number[t]) printf("YES\n");
         else printf("NO\n");
-        //traverse(adj, s, t) && traverse(adj, t, s)? cout << "YES\n" : cout << "NO\n";
     }
-    /*
-    for (auto &i : bridge)
-    {
-        cout << i.first << ' ' << i.second << '\n';
-    }
-    cout << '\n';
-    */
 }
  
 /*

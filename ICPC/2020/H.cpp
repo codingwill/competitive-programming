@@ -1,17 +1,18 @@
 #include <bits/stdc++.h>
 /*
 ** Author: wkwkwill (Willy I. K.)
-** 2020/09/19
+** 2020/11/29
 */
 using namespace std;
 using ll = long long int;
  
 ll BIG = 1e18 + 1;
 ll MOD = 1e9 + 7;
-
+int m = 998244353;
+int kiri = 0, kanan = 0;
 void solve();
  
-ll fastpow(ll x, ll y, ll n = BIG) 
+ll fastpow(ll x, ll y, ll n = m) 
 {
     x %= n;
     ll ans = 1;
@@ -75,30 +76,80 @@ bool stringSort(string &a, string &b)
     return a > b;
 }
 
+void binsearch(int n, int x)
+{
+    int left = 0;
+    int right = n;
+    while (left < right)
+    {
+        int middle = (left + right) / 2;
+        //cout << middle << '\n';
+        //if (middle == x) break;
+        if (middle <= x)
+        {
+            left = middle + 1;
+            if (x != middle) kiri++;
+        }
+        else
+        {
+            right = middle;
+            kanan++;
+        }
+    }
+}
+
+int sequence(int a, int b)
+{
+    ll res = 1; 
+    for (ll i = b; i <= a; i++) 
+        res = (res * i) % MOD; 
+    return res; 
+}
+
+/*================ SOLUTION ================*/
+
 void solve()
 {
-    int n, k;
-    cin >> n >> k;
-    vector<int> a(n+5);
+    int n, m;
+    cin >> n;
+    vector<int> a(n);
     for (int i = 0; i < n; ++i)
     {
         cin >> a[i];
     }
-    int ans = a[0];
-    for (int i = 1; i < n; ++i)
+    cin >> m;
+    vector<int> b;
+    int prev = 1e9 + 5;
+    for (int i = 0; i < m; ++i)
     {
-        ans ^= a[i];
+        int input;
+        cin >> input;
+        if (input <= prev)
+        {
+            if (i > 0) b.push_back(prev);
+            if (i == m-1)
+            {
+                b.push_back(input);
+            }
+        }
+        prev = input;
     }
-    //cout << ans << '\n';
-    ans % 2 == 1 ? printf("John\n") : printf("Preston\n");
+    int ans = 0;
+    for (int i = 0; i < min(b.size(), a.size()); ++i)
+    {
+        if (b[i] >= a[i]) ans++;
+    }
+    cout << ans << '\n';
+    
+
+
 }
  
-/*
- 
-6 6
-9 10 12 4 7 2
-3 4 6 0 1 0
-0 0 0 0
+/* ========= KOTRETAN ========= \*
 
-4 6 1 2 3 5 
+0 0 1 2 1 0
+0 1 1 1 1 0 = 4
+0 0 1 1 1 1 = 4
+
+1500 1000
 */
