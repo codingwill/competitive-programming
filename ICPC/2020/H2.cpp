@@ -107,7 +107,6 @@ int sequence(int a, int b)
 }
 
 /*================ SOLUTION ================*/
-
 void solve()
 {
     int n, m;
@@ -150,6 +149,7 @@ void solve()
                     udah[i] = true;
                     ans++;
                     prevIndex = 1e6;
+                    cout << i << ' ' << j << '\n';
                 }
                 if (index > prevIndex)
                 {
