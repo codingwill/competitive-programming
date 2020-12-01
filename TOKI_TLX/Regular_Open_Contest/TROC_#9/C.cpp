@@ -16,14 +16,6 @@ const int m = 998244353;
 
 void solve();
 
-int main()
-{
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    solve();
-    return 0;
-}
-
 /*================ IMPORTANT FUNCTION ================*/
 
 ll fastpow(ll x, ll y, ll n = m) 
@@ -54,6 +46,14 @@ bool sortPairFirstDec(pair<int, int> &a, pair<int, int> &b)
 {
     if (a.first == b.first) return a.second < b.second;
     return a.first > b.first;
+}
+ 
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    solve();
+    return 0;
 }
   
 ll fact(ll n) 
@@ -123,19 +123,69 @@ int gcd(int a, int b)
 
 /*===================== SOLUTION =====================*/
 
+vector<ll> pref(200050, 0);
+
 void solve()
 {
+    int n, k;
+    cin >> n >> k;
+    vector<ll> a(n);
+    for (int i = 0; i < n; ++i)
+    {
+        cin >> a[i];
+    }
+    sort(a.begin(), a.end());
+    if (k == 1) cout << 0 << '\n';
+    else if (k == 2) cout << abs(a[0] - a[n-1]) << '\n';
+    else
+    {
+        vector<ll> b;
+        int x = 0, y = n-1;
+        for (int i = 0; i < k; ++i)
+        {
+            if (i % 2 == 0) 
+            {
+                b.push_back(a[x]);
+                x++;
+            }
+            else
+            {
+                b.push_back(a[y]);
+                y--;
+            }
+            
+        }
+        sort(b.begin(), b.end());
+        pref[0] = b[0];
+        for (int i = 1; i < k-1; ++i)
+        {
+            pref[i] = pref[i-1] + b[i];
+        }
+        ll ans = abs((b[k-1] * (k-1)) - pref[k-2]);
+        for (int i = k-2; i >= 1; --i)
+        {
+            ans += abs((b[i] * i) - pref[i-1]);
+        }
+        cout << ans << '\n';
+    }
     
+
 }
  
 /* ==================== KOTRETAN ===================== *\
 
-5 4
-2 3 4 3 3
-1
-2
-3
-10
+7 2 1 = 5 + 6 + 1
+7 5 1 = 2 + 6 + 4
+7 6 1 = 1 + 6 + 5
+7 3 1 = 4 + 6 + 2
 
-11 (12) 13 14 (15) (16) 17 (18) 19 20 (21) 22 23
+8 1 4 = 7 + 4 + 3 = 14
+8 1 6 = 7 + 2 + 5 = 14
+
+10 6 1 = 4 + 9 + 5 = 18
+10 9 1 = 1 + 9 + 8 = 18
+
+10 1 3 6 7 = 9 + 7 + 4 + 3 + 2 + 5 + 6 + 3 + 4 + 1 = 44
+10 1 3 9 6 = 1 + 13 + 2 + 9
+1 3 6 9 10 = 21 + 17 + 8 + 2 = 48
 */

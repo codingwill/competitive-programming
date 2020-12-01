@@ -16,14 +16,6 @@ const int m = 998244353;
 
 void solve();
 
-int main()
-{
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    solve();
-    return 0;
-}
-
 /*================ IMPORTANT FUNCTION ================*/
 
 ll fastpow(ll x, ll y, ll n = m) 
@@ -54,6 +46,14 @@ bool sortPairFirstDec(pair<int, int> &a, pair<int, int> &b)
 {
     if (a.first == b.first) return a.second < b.second;
     return a.first > b.first;
+}
+ 
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    solve();
+    return 0;
 }
   
 ll fact(ll n) 
@@ -125,7 +125,14 @@ int gcd(int a, int b)
 
 void solve()
 {
-    
+    int n;
+    cin >> n;
+    for (int i = 0; i < n; ++i)
+    {
+        int input;
+        cin >> input;
+        cout << (n + 1) - input << ' ';
+    }
 }
  
 /* ==================== KOTRETAN ===================== *\

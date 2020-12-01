@@ -16,14 +16,6 @@ const int m = 998244353;
 
 void solve();
 
-int main()
-{
-    ios_base::sync_with_stdio(false);
-    cin.tie(NULL);
-    solve();
-    return 0;
-}
-
 /*================ IMPORTANT FUNCTION ================*/
 
 ll fastpow(ll x, ll y, ll n = m) 
@@ -54,6 +46,14 @@ bool sortPairFirstDec(pair<int, int> &a, pair<int, int> &b)
 {
     if (a.first == b.first) return a.second < b.second;
     return a.first > b.first;
+}
+ 
+int main()
+{
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    solve();
+    return 0;
 }
   
 ll fact(ll n) 
@@ -123,8 +123,53 @@ int gcd(int a, int b)
 
 /*===================== SOLUTION =====================*/
 
+vector<vector<int>> pref(2, vector<int>(100500, 0));
+vector<vector<int>> a(2, vector<int>(100500, 0));
+
+void initPref(int x, int size)
+{
+    if (a[x][0] % 2 == 0) pref[x][0] = 1;
+    for (int i = 1; i < size; ++i)
+    {
+        pref[x][i] = pref[x][i-1];
+        if (a[x][i] % 2 == 0) pref[x][i]++;
+    }
+}
+
 void solve()
 {
+    int n, q;
+    cin >> n >> q;
+    for (int i = 0; i < n; ++i)
+    {
+        cin >> a[0][i];
+    }
+    for (int i = 0; i < n; ++i)
+    {
+        cin >> a[1][i];
+    }
+    initPref(0, n);
+    initPref(1, n);
+    for (int i = 0; i < q; ++i)
+    {
+        int x1, y1, x2, y2;
+        cin >> x1 >> y1 >> x2 >> y2;
+        x1--; y1--; x2--; y2--;
+        if (y2 < y1) swap(y1, y2);
+        if (x2 < x1) swap(x1, x2);
+        ll ans = pref[1][y2] + pref[0][x2];
+        if (x1 > 0) ans -= pref[0][x1 - 1];
+        if (y1 > 0) ans -= pref[1][y1 - 1];
+        if (ans == (x2 - x1 + 1) + (y2 - y1 + 1) || ans == 0)
+        {
+            cout << "YES\n";
+        }
+        else
+        {
+            cout << "NO\n";
+        }
+        //cout << ans << '\n';
+    }
     
 }
  
