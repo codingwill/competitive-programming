@@ -5,13 +5,19 @@
 */
 using namespace std;
 using ll = long long int;
- 
-ll BIG = 1e18 + 1;
-ll MOD = 1e9 + 7;
-int m = 998244353;
-int kiri = 0, kanan = 0;
+
+/*===================== CONSTANT =====================*/
+
+const ll BIG = 1e18 + 1;
+const ll MOD = 1e9 + 7;
+const int m = 998244353;
+
+/*============== FUNCTION INITIALIZATION =============*/
+
 void solve();
- 
+
+/*================ IMPORTANT FUNCTION ================*/
+
 ll fastpow(ll x, ll y, ll n = m) 
 {
     x %= n;
@@ -115,7 +121,8 @@ int gcd(int a, int b)
     }
     return a;
 }
-/*================ SOLUTION ================*/
+
+/*===================== SOLUTION =====================*/
 
 map<ll, int> variety;
 vector<int> possible;
@@ -183,7 +190,7 @@ void solve()
     }
 }
  
-/* ========= KOTRETAN ========= \*
+/* ==================== KOTRETAN ===================== *\
 
 5 4
 2 3 4 3 3
