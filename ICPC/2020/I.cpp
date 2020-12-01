@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 /*
 ** Author: wkwkwill (Willy I. K.)
-** 2020/11/29
+** 2020/12/01
 */
 using namespace std;
 using ll = long long int;
@@ -106,112 +106,91 @@ int sequence(int a, int b)
     return res; 
 }
 
+int gcd(int a, int b) 
+{
+    while (b) 
+    {
+        a %= b;
+        swap(a, b);
+    }
+    return a;
+}
 /*================ SOLUTION ================*/
+
+map<ll, int> variety;
+vector<int> possible;
+vector<int> dp(250005, 0);
+vector<ll> a(505);
+
+const ll maks = 1e12;
+
+ll countVariety(ll x, ll y)
+{
+    if (x == y) return maks / x - 1;
+    ll fpb = gcd(x, y);
+    ll kpk = (x * y) / fpb;
+    ll sp = max((kpk + 1), (x + y)); //starting point
+    ll bb = x + y - 1; //batas bawah
+    ll ans = (maks / fpb) - ((sp-1) / fpb);
+    ans += max(0LL, (sp-2) - bb);
+    ans -= max(0LL, ((sp-2) / x) - (bb / x));
+    ans -= max(0LL, ((sp-2) / y) - (bb / y));
+    return ans;
+}
+
+void initDP(int x)
+{
+    int n = possible.size();
+    int maksSum = x;
+    dp[0] = 1;
+    for(int i = 0; i < n; i++)
+    {
+        for(int j = x; j >= possible[i]; j--)
+        {
+            dp[j] += dp[j - possible[i]];
+        }
+    }
+}
+
 void solve()
 {
-    int n, m;
-    cin >> n;
-    vector<int> harga(n);
+    int n, q;
+    cin >> n >> q;
     for (int i = 0; i < n; ++i)
     {
-        cin >> harga[i];
+        cin >> a[i];
     }
-    cin >> m;
-    vector<pair<int, int>> bidder(m);
-    for (int i = 0; i < m; ++i)
+    for (int i = 0; i < n; ++i)
     {
-        int input;
-        cin >> input;
-        bidder[i] = make_pair(input, i);
-    }
-    sort(bidder.begin(), bidder.end(), sortPairFirstDec);
-    int ans = 0;
-    int j = 0, i = 0;
-    int prevIndex = -1;
-    vector<bool> udah(n, false);
-    while (i < n && j < m)
-    {
-        int bid = bidder[j].first;
-        int index = bidder[j].second;
-        if (bid >= harga[i])
+        for (int j = i+1; j < n; ++j)
         {
-            if (i == 0 && j == 0) 
-            {
-                j++;
-                ans++;
-                udah[i] = true;
-                prevIndex = index;
-            }
-            else
-            {
-                if (!udah[i]) 
-                {
-                    udah[i] = true;
-                    ans++;
-                    prevIndex = 1e6;
-                    cout << i << ' ' << j << '\n';
-                }
-                if (index > prevIndex)
-                {
-                    i++;
-
-                    
-                }
-                else
-                {
-                    j++;
-                    prevIndex = bidder[j-1].second;
-                }
-            }
-        }
-        else
-        {
-            i++;
+            ll count = countVariety(a[i], a[j]);
+            cout << "(" << i + 1 << ", "  << j + 1 << ") = " << count << '\n';
+            variety[count]++;
         }
     }
-    cout << ans << '\n';
+    for (auto &i : variety)
+    {
+        possible.push_back(i.second);
+        cout << i.first << ' ' << i.second << '\n';
+    }
+    initDP(n * (n-1) / 2);
+    for (int i = 0; i < q; ++i)
+    {
+        int query;
+        cin >> query;
+        dp[query] > 0 ? cout << "YES\n" : cout << "NO\n";
+    }
 }
  
 /* ========= KOTRETAN ========= \*
 
-4
-1000 1000 1000 1000
-4
-3000 2000 2500 1000
+5 4
+2 3 4 3 3
+1
+2
 3
+10
 
-1000 1000 1000 1000
-3000 2500 2000 1000
-  1    3    2   4
-
-
-10 40 30 50 20
-50 15 10 5
-2  4  3  1
-
-4
-1000 1500 1000 1000
-4
-3000 1000 2500 1000
-4
-
-1000 1500 1000 1000
-3000 2500 1000 1000
-  1    3    2    4
-
-1000 1000 1000 1500
-  1    3    4    2
-3000 -> 1
-1000 -> 3
-2500 -> 2
-
-
-4
-1000 1000 1000 1000
-4
-3000 2000 2500 1000
-
-3000 2500 2000 1000
-  1    3    2    4
- 
+11 (12) 13 14 (15) (16) 17 (18) 19 20 (21) 22 23
 */
