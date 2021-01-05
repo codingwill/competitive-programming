@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <chrono>
 /*
 ** Author: wkwkwill (Willy I. K.)
 ** 2020/12/01
@@ -50,9 +51,32 @@ bool sortPairFirstDec(pair<int, int> &a, pair<int, int> &b)
  
 int main()
 {
+    //input output optimization
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
+    cout.tie(NULL);
+  	cout.setf(ios::fixed);
+  	cout.setf(ios::showpoint);
+  	cout.precision(10);
+    
+    //debug time
+    /*
+    auto start = chrono::high_resolution_clock::now();
+    freopen("input.txt", "r", stdin);
+    */
+
+    //solve function
     solve();
+    
+    //debug time
+    /*
+    auto stop = chrono::high_resolution_clock::now();
+    auto duration = chrono::duration_cast<chrono::milliseconds>(stop - start);
+    ofstream file;
+    file.open("time.txt");
+    file << duration.count() << " ms.";
+    file.close();
+    */
     return 0;
 }
   
@@ -111,7 +135,7 @@ int sequence(int a, int b)
     return res; 
 }
 
-int gcd(int a, int b) 
+int gcd(ll a, ll b) 
 {
     while (b) 
     {
@@ -123,10 +147,10 @@ int gcd(int a, int b)
 
 /*===================== SOLUTION =====================*/
 
-map<ll, int> variety;
+map<ll, int> variety, multi;
 vector<int> possible;
-vector<int> dp(250005, 0);
-vector<ll> a(505);
+bitset<250000> exist;
+ll a[505];
 
 const ll maks = 1e12;
 
@@ -144,19 +168,10 @@ ll countVariety(ll x, ll y)
     return ans;
 }
 
-void initDP(int x)
+void initDP()
 {
-    int n = possible.size();
-    int maksSum = x;
-    dp[0] = 1;
-    for(int i = 0; i < n; i++)
-    {
-        for(int j = x; j >= possible[i]; j--)
-        {
-            dp[j] += dp[j - possible[i]];
-        }
-    }
-}
+    
+}   
 
 void solve()
 {
@@ -170,22 +185,52 @@ void solve()
     {
         for (int j = i+1; j < n; ++j)
         {
-            ll count = countVariety(a[i], a[j]);
-            cout << "(" << i + 1 << ", "  << j + 1 << ") = " << count << '\n';
-            variety[count]++;
+            ll fpb = gcd(a[i], a[j]);
+            ll total = maks / fpb;
+            ll x = a[i] / fpb, y = a[j] / fpb;
+            ll pengecualian = (x - 1) * (y - 1) / 2;
+            pengecualian += (x + y - 1);
+            variety[total - pengecualian]++;
         }
     }
-    for (auto &i : variety)
+    for (auto i : variety)
     {
-        possible.push_back(i.second);
-        cout << i.first << ' ' << i.second << '\n';
+        multi[i.second]++;
     }
-    initDP(n * (n-1) / 2);
+    for (auto i : multi)
+    {
+        auto pasangan = i.first;
+        auto totalMuncul = i.second;
+        int kelipatan = 1;
+        while (kelipatan <= totalMuncul)
+        {
+            possible.push_back(pasangan * kelipatan);
+            totalMuncul -= kelipatan;
+            kelipatan *= 2;
+        }
+        if (totalMuncul > 0)
+        {
+            possible.push_back(pasangan * totalMuncul);
+        }
+    }
+    exist[0] = true;
+    for (auto i : possible)
+    {
+        exist |= (exist << i);
+    }
     for (int i = 0; i < q; ++i)
     {
         int query;
         cin >> query;
-        dp[query] > 0 ? cout << "YES\n" : cout << "NO\n";
+        exist[query] == 1 ? cout << "YES\n" : cout << "NO\n";
+        /*
+        string ans = "";
+        exist[query] == 1 ? ans = "YES\n" : ans = "NO\n";
+        ofstream file;
+        file.open("out.txt", ios_base::app);
+        file << ans;
+        file.close();
+        */
     }
 }
  
