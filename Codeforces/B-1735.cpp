@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 /*
-** Author: wkwkwill (Willy I. K.)
-** 2020/12/01
+** Author: codingwill (Willy I. K.)
+** 2022/10/02
 */
 using namespace std;
 using ll = long long int;
@@ -128,47 +128,43 @@ int gcd(int a, int b)
 
 /*===================== SOLUTION =====================*/
 
-const int factor = 6;
-int n;
-const int banCharacters = 3;
-
-void printIfEven(int m)
-{
-    for (int i = 0; i < m; ++i)
-    {
-        cout << i * factor + 1 << " " << i * factor + 5 << '\n';
-    }
-}
-
-void printIfOdd(int m)
-{
-    for (int i = 0; i < m - 1; ++i)
-    {
-        cout << i * factor + 1 << " " << i * factor + 5 << '\n';
-    }
-
-    cout << banCharacters * n - 2 << " " << banCharacters * n << '\n';
-}
-
 void solve()
 {
     ll t;
     cin >> t;
     while (t--)
     {
+        int n;
         cin >> n;
-        int m = (n + 1) / 2;
-        cout << m << '\n';
-        if (n % 2 == 0)
-            printIfEven(m);
-        else
-            printIfOdd(m);
+        vector<int> a(n);
+        for (int i = 0; i < n; ++i)
+        {
+            int x;
+            cin >> x;
+            a[i] = x;
+        }
+        sort(a.begin(), a.end());
+
+        int minim = a[0];
+        int factor = a[0] * 2 - 1;
+        ll result = 0;
+        for (int i = 1; i < n; ++i)
+        {
+            int divResult = ceil((float)a[i] / factor) - 1;
+            result += divResult;
+        }
+
+        cout << result << '\n';
     }
 }
-
 /* ==================== KOTRETAN ===================== *\
 
-3ANBANBAN
+5 4
+2 3 4 3 3
+1
+2
+3
+10
 
-
+11 (12) 13 14 (15) (16) 17 (18) 19 20 (21) 22 23
 */

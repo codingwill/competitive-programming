@@ -147,28 +147,76 @@ void printIfOdd(int m)
         cout << i * factor + 1 << " " << i * factor + 5 << '\n';
     }
 
-    cout << banCharacters * n - 2 << " " << banCharacters * n << '\n';
+    cout << banCharacters * n - 2 << " " << banCharacters * n - 1 << '\n';
 }
 
 void solve()
 {
-    ll t;
+    int t;
     cin >> t;
     while (t--)
     {
-        cin >> n;
-        int m = (n + 1) / 2;
-        cout << m << '\n';
-        if (n % 2 == 0)
-            printIfEven(m);
+        int n, x;
+        cin >> n >> x;
+
+        if (n == x)
+        {
+            cout << x << ' ';
+            for (int i = 2; i <= n - 1; ++i)
+            {
+                cout << i << ' ';
+            }
+            cout << 1;
+        }
+        else if (n / x < 2)
+        {
+            cout << -1;
+        }
+        else if (n % x != 0)
+        {
+            cout << -1;
+        }
         else
-            printIfOdd(m);
+        {
+            cout << x << ' ';
+            for (int i = 2; i <= n - 1; ++i)
+            {
+                if (i == x)
+                {
+                    cout << n << ' ';
+                    continue;
+                }
+                cout << i << ' ';
+            }
+            cout << 1;
+        }
+        cout << '\n';
     }
 }
 
 /* ==================== KOTRETAN ===================== *\
 
-3ANBANBAN
+4 2 3 1
+3 2 4 1
+3 2 4 1
 
+6 2 3 4 5 1
 
+4 2 3 6 5 1
+
+3 2 4 5 6 1
+3 _ _ _ _ 1 => 2 4 5 6
+            => prioritize prime first, then the rest sorted ASC
+            => 2 5 4 6
+
+3 2 6 4 5 1
+
+7 2 3 4 5 6 1
+2 7 3 4 5 6 1
+
+6 2 3 4 5 8 7 1
+
+3 2 6 4 5 1
+
+3 2 8 4 5 6 7 1
 */

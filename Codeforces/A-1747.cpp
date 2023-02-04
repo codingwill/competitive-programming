@@ -128,47 +128,38 @@ int gcd(int a, int b)
 
 /*===================== SOLUTION =====================*/
 
-const int factor = 6;
-int n;
-const int banCharacters = 3;
-
-void printIfEven(int m)
-{
-    for (int i = 0; i < m; ++i)
-    {
-        cout << i * factor + 1 << " " << i * factor + 5 << '\n';
-    }
-}
-
-void printIfOdd(int m)
-{
-    for (int i = 0; i < m - 1; ++i)
-    {
-        cout << i * factor + 1 << " " << i * factor + 5 << '\n';
-    }
-
-    cout << banCharacters * n - 2 << " " << banCharacters * n << '\n';
-}
-
 void solve()
 {
     ll t;
     cin >> t;
     while (t--)
     {
+        int n;
         cin >> n;
-        int m = (n + 1) / 2;
-        cout << m << '\n';
-        if (n % 2 == 0)
-            printIfEven(m);
-        else
-            printIfOdd(m);
+        ll negative = 0;
+        ll positive = 0;
+        for (int i = 0; i < n; ++i)
+        {
+            int number;
+            cin >> number;
+            if (number > 0)
+                positive += number;
+            else
+                negative += number;
+        }
+
+        cout << max(abs(positive) - abs(negative), abs(negative) - abs(positive)) << '\n';
     }
 }
 
 /* ==================== KOTRETAN ===================== *\
 
-3ANBANBAN
+5 4
+2 3 4 3 3
+1
+2
+3
+10
 
-
+11 (12) 13 14 (15) (16) 17 (18) 19 20 (21) 22 23
 */

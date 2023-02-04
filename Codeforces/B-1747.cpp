@@ -147,7 +147,7 @@ void printIfOdd(int m)
         cout << i * factor + 1 << " " << i * factor + 5 << '\n';
     }
 
-    cout << banCharacters * n - 2 << " " << banCharacters * n << '\n';
+    cout << banCharacters * n - 2 << " " << banCharacters * n - 1 << '\n';
 }
 
 void solve()
@@ -157,8 +157,7 @@ void solve()
     while (t--)
     {
         cin >> n;
-        int m = (n + 1) / 2;
-        cout << m << '\n';
+
         if (n % 2 == 0)
             printIfEven(m);
         else
@@ -168,7 +167,9 @@ void solve()
 
 /* ==================== KOTRETAN ===================== *\
 
-3ANBANBAN
+BANBANBAN
+BANBANBANBAB
+BANBANBANBANBAN
 
 
 */

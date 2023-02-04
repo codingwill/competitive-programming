@@ -147,28 +147,24 @@ void printIfOdd(int m)
         cout << i * factor + 1 << " " << i * factor + 5 << '\n';
     }
 
-    cout << banCharacters * n - 2 << " " << banCharacters * n << '\n';
+    cout << banCharacters * n - 2 << " " << banCharacters * n - 1 << '\n';
 }
 
 void solve()
 {
-    ll t;
+    int t;
     cin >> t;
     while (t--)
     {
-        cin >> n;
-        int m = (n + 1) / 2;
-        cout << m << '\n';
-        if (n % 2 == 0)
-            printIfEven(m);
-        else
-            printIfOdd(m);
+        string s;
+        cin >> s;
+
+        cout << s;
+        reverse(s.begin(), s.end());
+        cout << s << endl;
     }
 }
 
 /* ==================== KOTRETAN ===================== *\
-
-3ANBANBAN
-
 
 */
